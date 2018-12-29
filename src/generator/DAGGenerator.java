@@ -142,7 +142,7 @@ public class DAGGenerator {
 		for (GTask t : allTasks) {
 			List<Integer> computation_cost_of_task = new ArrayList<Integer>();
 			double computation_cost = t.end - t.start;
-			if (computation_cost < 5) {
+			if (computation_cost < 10) {
 				computation_cost = randomGenerator.nextInt((int)(length * processors / tasks));
 //				System.out.print(computation_cost + "   ");
 			}
@@ -156,6 +156,7 @@ public class DAGGenerator {
 					computation_cost_of_task.add(temp);
 				}
 				total_computation_cost += temp;
+				double total_mean_computation_cost = total_computation_cost / processors;
 			}
 			System.out.print(t + " ");
 			for (Integer c : computation_cost_of_task)
@@ -179,7 +180,7 @@ public class DAGGenerator {
 			actual_total_communication_cost += temp;
 		}
 
-		double actualCCR = (double) total_computation_cost / (double) actual_total_communication_cost;
+		double actualCCR = (double) (total_computation_cost / processors) / (double) actual_total_communication_cost;
 		System.out.println("Actual CCR " + actualCCR);
 
 	}
@@ -257,8 +258,8 @@ public class DAGGenerator {
 
 	private static void small_instance(String name) {
 		double length = 100.0;
-		int processors = 3;
-		int tasks = 10;
+		int processors = 5;
+		int tasks = 20;
 		int fanout = 3;
 		int maxDistanceFactor = 10;
 		DAGGenerator generator = new DAGGenerator(length, processors, tasks, fanout, maxDistanceFactor);
@@ -305,8 +306,8 @@ public class DAGGenerator {
 	}
 
 	public static void main(String[] args) {
-		for(int i = 0; i < 10; i++) {
-			small_instance("data"+i);
+		for(int i = 0; i < 20; i++) {
+			small_instance("t20p8_"+i);
 		}
 //		small_instance("data");
 //	    big_instance();

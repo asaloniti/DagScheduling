@@ -123,17 +123,20 @@ public class MainApp {
 	}
 	
 	void method6() {
-		//int s = 0;
-		for(int i = 0; i < 10; i++) {
-			loadDataset("txtfiles\\data"+i+".txt");
+		File folder = new File("txtfiles");
+		File[] listOfFiles = folder.listFiles();
+		for (File file : listOfFiles) {
+			loadDataset(file.getAbsolutePath());
 			Heft sls = new Heft(aProblem);
 			sls.solve();
 		}
 	}
 	
 	void method7() {
-		for(int i = 0; i < 10; i++) {
-			loadDataset("txtfiles\\data"+i+".txt");
+		File folder = new File("txtfiles");
+		File[] listOfFiles = folder.listFiles();
+		for (File file : listOfFiles) {
+			loadDataset(file.getAbsolutePath());
 			CPHeft sls = new CPHeft(aProblem);
 			sls.solve();
 		}
