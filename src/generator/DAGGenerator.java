@@ -57,10 +57,24 @@ public class DAGGenerator {
 	}
 
 	public void generate() {
+		int number_of_tasks[] = new int[processors];
+        int sum = tasks -2* processors - 2;
+
+        for (int i = 0; i < processors-1; ++i) {
+        	number_of_tasks[i] = randomGenerator.nextInt(sum);
+        }
+        number_of_tasks[processors-1] = sum;
+
+        java.util.Arrays.sort(number_of_tasks);
+        for (int i = processors-1; i > 0; --i) {
+        	number_of_tasks[i] = number_of_tasks[i] - number_of_tasks[i-1];
+        }
+        for (int i = 0; i < processors; ++i)
+        	{ ++number_of_tasks[i]; }
+
 		int t_id = 1;
 		for (int p = 0; p < processors; p++) {
-			int number_of_tasks = randomGenerator.nextInt(tasks / processors) + 1;
-			for (int j = 0; j < number_of_tasks; j++) {
+			for (int j = 0; j < number_of_tasks[p]; j++) {
 				double time = randomGenerator.nextDouble() * length;
 				timelines.get(p).add(time);
 			}
@@ -135,6 +149,7 @@ public class DAGGenerator {
 		}
 		allTasks.add(end);
 		allTasks.add(0, start);
+		System.out.println(allTasks.size() + "  ***  "+ tasks);
 
 		// task computation costs on each processor
 		int total_computation_cost = 0;
@@ -143,8 +158,8 @@ public class DAGGenerator {
 			List<Integer> computation_cost_of_task = new ArrayList<Integer>();
 			double computation_cost = t.end - t.start;
 			if (computation_cost < 10) {
-				computation_cost = randomGenerator.nextInt((int)(length * processors / tasks));
-//				System.out.print(computation_cost + "   ");
+				computation_cost = randomGenerator.nextInt((int)(length * processors / tasks)) + 10;
+//				System.out.print(computation_cost + "    ");
 			}
 			for (int p = 0; p < processors; p++) {
 				int temp;
@@ -165,8 +180,8 @@ public class DAGGenerator {
 			computation_costs.add(computation_cost_of_task);
 		}
 
-		double CCR = 0.5; 
-		double total_communication_cost = total_computation_cost / (processors * CCR);
+		double CCR = 2; 
+		double total_communication_cost = (total_computation_cost / processors) * CCR;
 		int actual_total_communication_cost = 0;
 		int number_of_dependencies = dependencies.size();
 		double average_communication_cost = total_communication_cost / number_of_dependencies;
@@ -180,7 +195,7 @@ public class DAGGenerator {
 			actual_total_communication_cost += temp;
 		}
 
-		double actualCCR = (double) (total_computation_cost / processors) / (double) actual_total_communication_cost;
+		double actualCCR =  (double) actual_total_communication_cost / (double) (total_computation_cost / processors);
 		System.out.println("Actual CCR " + actualCCR);
 
 	}
@@ -257,9 +272,9 @@ public class DAGGenerator {
 	}
 
 	private static void small_instance(String name) {
-		double length = 100.0;
-		int processors = 5;
-		int tasks = 20;
+		double length = 100;
+		int processors = 3;
+		int tasks = 10;
 		int fanout = 3;
 		int maxDistanceFactor = 10;
 		DAGGenerator generator = new DAGGenerator(length, processors, tasks, fanout, maxDistanceFactor);
@@ -306,10 +321,10 @@ public class DAGGenerator {
 	}
 
 	public static void main(String[] args) {
-		for(int i = 0; i < 20; i++) {
-			small_instance("t20p8_"+i);
+		for(int i = 0; i <  10; i++) {
+			small_instance("t10p3r7_"+i);
 		}
-//		small_instance("data");
+//		small_instance("t40p8_");
 //	    big_instance();
 	}
 }

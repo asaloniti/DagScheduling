@@ -1,0 +1,17 @@
+digraph t20p2r5_0 {
+0 -> 1 [ label = 49 ];
+1 -> 2 [ label = 55 ];
+2 -> 3 [ label = 47 ];
+3 -> 4 [ label = 117 ];
+4 -> 5 [ label = 92 ];
+5 -> 6 [ label = 114 ];
+5 -> 7 [ label = 82 ];
+6 -> 7 [ label = 52 ];
+6 -> 8 [ label = 43 ];
+7 -> 8 [ label = 115 ];
+7 -> 9 [ label = 116 ];
+8 -> 9 [ label = 74 ];
+9 -> 10 [ label = 76 ];
+10 -> 11 [ label = 61 ];
+ }
+

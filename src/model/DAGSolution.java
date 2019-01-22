@@ -108,7 +108,10 @@ public class DAGSolution {
 		return makespan;
 	}
 	
-	public double computespeedup() {
+//	Numerator of the fraction (speedup = compute_sequ_exec_t / makespan)
+//	The sequential execution time is omputed by assigning all tasks to a single resource that
+//	minimizes the computation costs
+	public int compute_sequ_exec_t() {
 		int min = Integer.MAX_VALUE;
 		for (int p = 0; p < aProblem.getNumberOfProcessors(); p++) {
 			int s = 0;
@@ -119,7 +122,11 @@ public class DAGSolution {
 				min = s;
 			}
 		}
-		double speedup = (double) min/computemakespan();
+		return min;
+	}
+	
+	public double computespeedup() {
+		double speedup = (double) compute_sequ_exec_t()/computemakespan();
 		return speedup;
 	}
 	
@@ -145,7 +152,7 @@ public class DAGSolution {
 	public void exportMetrics(String name) {
 		StringBuilder sb = new StringBuilder();
 //		sb.append(String.format("\n makespan\t speedup\t efficiency\t\t processor utilization"));
-		sb.append(String.format("\n%d\t%f\t%f\t",computemakespan(), computespeedup(),computeefficiency()));
+		sb.append(String.format("\n%d\t%d\t%f\t%f\t",computemakespan(),compute_sequ_exec_t(),computespeedup(),computeefficiency()));
 		for (int p = 0; p < aProblem.getNumberOfProcessors(); p++) {
 			sb.append(String.format("\t%f",computeputilization()[p]));	
 		}

@@ -1,0 +1,15 @@
+digraph t10p2r5_19 {
+0 -> 1 [ label = 81 ];
+0 -> 5 [ label = 119 ];
+1 -> 2 [ label = 46 ];
+2 -> 3 [ label = 87 ];
+2 -> 7 [ label = 119 ];
+3 -> 4 [ label = 84 ];
+3 -> 8 [ label = 111 ];
+4 -> 9 [ label = 106 ];
+5 -> 6 [ label = 55 ];
+6 -> 7 [ label = 95 ];
+7 -> 8 [ label = 115 ];
+8 -> 9 [ label = 87 ];
+ }
+

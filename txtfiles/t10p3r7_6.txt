@@ -1,0 +1,29 @@
+#
+Processors:3
+Tasks:10
+# task computation cost on each processor
+0 29 26 32 
+1 37 19 46 
+2 62 67 28 
+3 10 22 9 
+4 19 16 15 
+5 87 95 71 
+6 33 24 40 
+7 23 22 50 
+8 3 11 13 
+9 32 38 13 
+Dependencies:13
+# from_task_id to_task_id weight
+0 1 54
+0 3 28
+0 4 56
+0 6 60
+1 2 36
+1 7 50
+2 9 54
+3 5 49
+4 5 70
+5 9 56
+6 7 36
+7 8 51
+8 9 63

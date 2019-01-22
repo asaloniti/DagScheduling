@@ -1,0 +1,15 @@
+digraph t10p2r5_2 {
+0 -> 1 [ label = 103 ];
+0 -> 4 [ label = 45 ];
+0 -> 6 [ label = 103 ];
+1 -> 2 [ label = 48 ];
+1 -> 3 [ label = 54 ];
+2 -> 3 [ label = 117 ];
+3 -> 9 [ label = 57 ];
+4 -> 5 [ label = 73 ];
+5 -> 9 [ label = 115 ];
+6 -> 7 [ label = 131 ];
+7 -> 8 [ label = 121 ];
+8 -> 9 [ label = 47 ];
+ }
+

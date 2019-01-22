@@ -1,0 +1,16 @@
+digraph t10p3r7_6 {
+0 -> 1 [ label = 54 ];
+0 -> 3 [ label = 28 ];
+0 -> 4 [ label = 56 ];
+0 -> 6 [ label = 60 ];
+1 -> 2 [ label = 36 ];
+1 -> 7 [ label = 50 ];
+2 -> 9 [ label = 54 ];
+3 -> 5 [ label = 49 ];
+4 -> 5 [ label = 70 ];
+5 -> 9 [ label = 56 ];
+6 -> 7 [ label = 36 ];
+7 -> 8 [ label = 51 ];
+8 -> 9 [ label = 63 ];
+ }
+
